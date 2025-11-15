@@ -1,8 +1,4 @@
-
-## main.py
-```python
-"""
-HW01 — Cables and Devices
+"""HW01  Cables and Devices
 
 Implement:
 - build_graph(edges, directed=False)
@@ -27,7 +23,19 @@ def build_graph(edges, directed=False):
     7) Debug: print and check small cases (do this locally).
     8) Optimize: write big-O in README.
     """
-    raise NotImplementedError
+    graph = {}
+    for u, v in edges:
+        if u not in graph:
+            graph[u] = []
+        graph[u].append(v)
+        if directed:
+            if v not in graph:
+                graph[v] = []
+        else:
+            if v not in graph:
+                graph[v] = []
+            graph[v].append(u)
+    return graph
 
 
 def degree_dict(graph):
@@ -38,7 +46,10 @@ def degree_dict(graph):
 
     TODO: implement after you finish build_graph.
     """
-    raise NotImplementedError
+    degrees = {}
+    for node, neighbors in graph.items():
+        degrees[node] = len(neighbors)
+    return degrees
 
 
 if __name__ == "__main__":
